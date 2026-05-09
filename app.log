@@ -1,0 +1,9 @@
+2026-05-09 21:59:41 | ERROR    | database | Error connecting to database: No module named 'psycopg2'
+2026-05-09 21:59:55 | ERROR    | database | Error connecting to database: No module named 'psycopg2'
+2026-05-09 22:03:49 | ERROR    | database | ❌ Error connecting to database: No module named 'psycopg2'
+2026-05-09 22:04:57 | INFO     | database | ✅ Database connection established successfully.
+2026-05-09 22:05:56 | INFO     | database | ✅ Database connection established successfully.
+2026-05-09 22:05:59 | INFO     | database | ✅ Database connection established successfully.
+2026-05-09 22:06:22 | INFO     | database | ✅ Database connection established successfully.
+2026-05-09 22:09:01 | INFO     | database | ✅ Database connection established successfully.
+2026-05-09 22:09:01 | INFO     | main | 🚀 Customer API started. Docs at http://localhost:8000/docs
