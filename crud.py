@@ -1,6 +1,8 @@
 import logging
 from sqlalchemy.orm import Session
-from models import Customer
+from sqlalchemy import func
+from models import Customer,Order, Payment,Product, ProductLine, Employee, Office, OrderDetail
+
 import schemas
 
 logger = logging.getLogger(__name__)
@@ -91,6 +93,70 @@ def delete_customer(db: Session, customer_number: int) -> bool:
     db.commit()
     logger.info(" DELETE: Customer #%d deleted.", customer_number)
     return True
+ 
+#COUNT FUNCTIONS (one per table) 
+def count_customers(db: Session) -> int:
+    logger.info("COUNT: Querying customers table.")
+    result = db.query(func.count()).select_from(Customer).scalar()
+    count = result or 0
+    logger.info("COUNT: customers = %d", count)
+    return count
+ 
+ 
+def count_orders(db: Session) -> int:
+    logger.info("COUNT: Querying orders table.")
+    result = db.query(func.count()).select_from(Order).scalar()
+    count = result or 0
+    logger.info("COUNT: orders = %d", count)
+    return count
+ 
+ 
+def count_products(db: Session) -> int:
+    logger.info("📊 COUNT: Querying products table.")
+    result = db.query(func.count()).select_from(Product).scalar()
+    count = result or 0
+    logger.info("COUNT: products = %d", count)
+    return count
+ 
+ 
+def count_employees(db: Session) -> int:
+    logger.info("📊 COUNT: Querying employees table.")
+    result = db.query(func.count()).select_from(Employee).scalar()
+    count = result or 0
+    logger.info("COUNT: employees = %d", count)
+    return count
+ 
+ 
+def count_offices(db: Session) -> int:
+    logger.info("COUNT: Querying offices table.")
+    result = db.query(func.count()).select_from(Office).scalar()
+    count = result or 0
+    logger.info("COUNT: offices = %d", count)
+    return count
+ 
+ 
+def count_payments(db: Session) -> int:
+    logger.info("COUNT: Querying payments table.")
+    result = db.query(func.count()).select_from(Payment).scalar()
+    count = result or 0
+    logger.info("COUNT: payments = %d", count)
+    return count
+ 
+ 
+def count_orderdetails(db: Session) -> int:
+    logger.info("COUNT: Querying orderdetails table.")
+    result = db.query(func.count()).select_from(OrderDetail).scalar()
+    count = result or 0
+    logger.info("COUNT: orderdetails = %d", count)
+    return count
+ 
+ 
+def count_productlines(db: Session) -> int:
+    logger.info("COUNT: Querying productlines table.")
+    result = db.query(func.count()).select_from(ProductLine).scalar()
+    count = result or 0
+    logger.info("COUNT: productlines = %d", count)
+    return count
  
 
      

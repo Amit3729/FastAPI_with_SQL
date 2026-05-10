@@ -2,6 +2,8 @@ import logging
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
+import asyncio
+import time
 
 import crud
 import schemas
@@ -92,6 +94,144 @@ def delete_customer(customer_number: int, db:Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail=f"Customer #{customer_number} not found")
     logger.info("DELETE /customers/%d — deleted successfully", customer_number)
 
+#Individual Count Endpoints
+
+@router.get("/customers/count", tags=["Counts"])
+def get_customer_count(db: Session = Depends(get_db)):
+    """Returns the total number of rows in the customers table."""
+    logger.info("GET /customers/count")
+    count = crud.count_customers(db)
+    logger.info("GET /customers/count — %d", count)
+    return {"table": "customers", "count": count}
+ 
+ 
+@router.get("/orders/count", tags=["Counts"])
+def get_order_count(db: Session = Depends(get_db)):
+    """Returns the total number of rows in the orders table."""
+    logger.info("GET /orders/count")
+    count = crud.count_orders(db)
+    logger.info("GET /orders/count — %d", count)
+    return {"table": "orders", "count": count}
+ 
+ 
+@router.get("/products/count", tags=["Counts"])
+def get_product_count(db: Session = Depends(get_db)):
+    """Returns the total number of rows in the products table."""
+    logger.info("GET /products/count")
+    count = crud.count_products(db)
+    logger.info("GET /products/count — %d", count)
+    return {"table": "products", "count": count}
+ 
+ 
+@router.get("/employees/count", tags=["Counts"])
+def get_employee_count(db: Session = Depends(get_db)):
+    """Returns the total number of rows in the employees table."""
+    logger.info("GET /employees/count")
+    count = crud.count_employees(db)
+    logger.info("GET /employees/count — %d", count)
+    return {"table": "employees", "count": count}
+ 
+ 
+@router.get("/offices/count", tags=["Counts"])
+def get_office_count(db: Session = Depends(get_db)):
+    """Returns the total number of rows in the offices table."""
+    logger.info("GET /offices/count")
+    count = crud.count_offices(db)
+    logger.info("GET /offices/count — %d", count)
+    return {"table": "offices", "count": count}
+ 
+ 
+@router.get("/payments/count", tags=["Counts"])
+def get_payment_count(db: Session = Depends(get_db)):
+    """Returns the total number of rows in the payments table."""
+    logger.info("GET /payments/count")
+    count = crud.count_payments(db)
+    logger.info("GET /payments/count — %d", count)
+    return {"table": "payments", "count": count}
+ 
+ 
+@router.get("/orderdetails/count", tags=["Counts"])
+def get_orderdetail_count(db: Session = Depends(get_db)):
+    """Returns the total number of rows in the orderdetails table."""
+    logger.info("GET /orderdetails/count")
+    count = crud.count_orderdetails(db)
+    logger.info("GET /orderdetails/count — %d", count)
+    return {"table": "orderdetails", "count": count}
+ 
+ 
+@router.get("/productlines/count", tags=["Counts"])
+def get_productline_count(db: Session = Depends(get_db)):
+    """Returns the total number of rows in the productlines table."""
+    logger.info("GET /productlines/count")
+    count = crud.count_productlines(db)
+    logger.info("GET /productlines/count — %d", count)
+    return {"table": "productlines", "count": count}
+
+#Aggregated Dashboard with Concurrency
+@router.get("/overall_counts", tags=["Dashboard"])
+async def get_overall_counts(db: Session = Depends(get_db)):
+    """
+    Fetches record counts from all 8 tables SIMULTANEOUSLY using asyncio.gather().
+ 
+    Returns combined JSON:
+    {
+        "customers": 122,
+        "orders": 326,
+        "products": 110,
+        "employees": 23,
+        "offices": 7,
+        "payments": 273,
+        "orderdetails": 2996,
+        "productlines": 7,
+        "response_time_ms": 45.2
+    }
+    """
+    logger.info("GET /overall_counts — starting all 8 concurrent queries")
+    start_time = time.perf_counter()
+ 
+    # ── Launch all 8 DB queries at the same time ───────────────────────────
+    # asyncio.to_thread() moves each blocking SQLAlchemy call off the event
+    # loop into a thread, allowing true concurrent execution.
+    logger.info("⚡ Launching asyncio.gather() for 8 concurrent DB queries...")
+ 
+    (
+        customers,
+        orders,
+        products,
+        employees,
+        offices,
+        payments,
+        orderdetails,
+        productlines,
+    ) = await asyncio.gather(
+        asyncio.to_thread(crud.count_customers, db),
+        asyncio.to_thread(crud.count_orders, db),
+        asyncio.to_thread(crud.count_products, db),
+        asyncio.to_thread(crud.count_employees, db),
+        asyncio.to_thread(crud.count_offices, db),
+        asyncio.to_thread(crud.count_payments, db),
+        asyncio.to_thread(crud.count_orderdetails, db),
+        asyncio.to_thread(crud.count_productlines, db),
+    )
+ 
+    elapsed_ms = round((time.perf_counter() - start_time) * 1000, 2)
+    logger.info("asyncio.gather() completed in %s ms", elapsed_ms)
+ 
+    result = {
+        "customers": customers,
+        "orders": orders,
+        "products": products,
+        "employees": employees,
+        "offices": offices,
+        "payments": payments,
+        "orderdetails": orderdetails,
+        "productlines": productlines,
+        "response_time_ms": elapsed_ms,
+    }
+ 
+    logger.info("GET /overall_counts — success: %s", result)
+    return result
+ 
         
     
 

@@ -7,3 +7,17 @@
 2026-05-09 22:06:22 | INFO     | database | ✅ Database connection established successfully.
 2026-05-09 22:09:01 | INFO     | database | ✅ Database connection established successfully.
 2026-05-09 22:09:01 | INFO     | main | 🚀 Customer API started. Docs at http://localhost:8000/docs
+2026-05-10 11:02:25 | INFO     | database | ✅ Database connection established successfully.
+2026-05-10 11:02:25 | INFO     | main | 🚀 Customer API started. Docs at http://localhost:8000/docs
+2026-05-10 11:02:51 | INFO     | router | GET /customers/count
+2026-05-10 11:02:51 | INFO     | crud | COUNT: Querying customers table.
+2026-05-10 11:02:51 | INFO     | crud | COUNT: customers = 122
+2026-05-10 11:02:51 | INFO     | router | GET /customers/count — 122
+2026-05-10 11:03:04 | INFO     | router | GET /orders/count
+2026-05-10 11:03:04 | INFO     | crud | COUNT: Querying orders table.
+2026-05-10 11:03:04 | INFO     | crud | COUNT: orders = 326
+2026-05-10 11:03:04 | INFO     | router | GET /orders/count — 326
+2026-05-10 11:03:12 | INFO     | router | GET /products/count
+2026-05-10 11:03:12 | INFO     | crud | 📊 COUNT: Querying products table.
+2026-05-10 11:03:12 | INFO     | crud | COUNT: products = 110
+2026-05-10 11:03:12 | INFO     | router | GET /products/count — 110
