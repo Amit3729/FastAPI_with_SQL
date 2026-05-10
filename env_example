@@ -1,0 +1,7 @@
+#Need to create a .env file in the root directory of the project with the following content:
+POSTGRES_USER=YourUsername
+POSTGRES_PASSWORD=YourPassword
+POSTGRES_DB=YOUR_DB_NAME
+POSTGRES_PORT=5432
+
+DATABASE_URL=postgresql://YourUsername:YourPassword@localhost:5432/YOUR_DB_NAME
