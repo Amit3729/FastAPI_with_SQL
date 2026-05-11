@@ -27,7 +27,7 @@ class CustomerCreate(BaseModel):
     contactLastName: str
     contactFirstName: str
     phone: str 
-    adressLine1: str
+    addressLine1: str
     addressLine2: Optional[str]    = None
     city: str 
     state: Optional[str] = None

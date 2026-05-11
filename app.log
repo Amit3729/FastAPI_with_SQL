@@ -21,3 +21,62 @@
 2026-05-10 11:03:12 | INFO     | crud | 📊 COUNT: Querying products table.
 2026-05-10 11:03:12 | INFO     | crud | COUNT: products = 110
 2026-05-10 11:03:12 | INFO     | router | GET /products/count — 110
+2026-05-10 11:44:02 | INFO     | database | ✅ Database connection established successfully.
+2026-05-10 11:44:02 | INFO     | main | 🚀 Customer API started. Docs at http://localhost:8000/docs
+2026-05-11 22:22:35 | ERROR    | database | ❌ Error connecting to database: No module named 'psycopg2'
+2026-05-11 22:33:23 | INFO     | database | ✅ Database connection established successfully.
+2026-05-11 22:33:23 | INFO     | main | Customer API started. Docs at http://localhost:8000/docs
+2026-05-11 22:33:23 | INFO     | main | 🟢 Application starting up...
+2026-05-11 22:33:23 | INFO     | main | Startup completed in 0.0001 seconds. Ready to serve requests.
+2026-05-11 22:34:23 | INFO     | router | GET /orders/count
+2026-05-11 22:34:23 | INFO     | crud | COUNT: Querying orders table.
+2026-05-11 22:34:23 | INFO     | crud | COUNT: orders = 326
+2026-05-11 22:34:23 | INFO     | router | GET /orders/count — 326
+2026-05-11 22:34:28 | INFO     | router | GET /products/count
+2026-05-11 22:34:28 | INFO     | crud | 📊 COUNT: Querying products table.
+2026-05-11 22:34:28 | INFO     | crud | COUNT: products = 110
+2026-05-11 22:34:28 | INFO     | router | GET /products/count — 110
+2026-05-11 22:34:31 | INFO     | router | GET /products/count
+2026-05-11 22:34:31 | INFO     | crud | 📊 COUNT: Querying products table.
+2026-05-11 22:34:31 | INFO     | crud | COUNT: products = 110
+2026-05-11 22:34:31 | INFO     | router | GET /products/count — 110
+2026-05-11 22:34:51 | INFO     | router | GET /employees/count
+2026-05-11 22:34:51 | INFO     | crud | 📊 COUNT: Querying employees table.
+2026-05-11 22:34:51 | INFO     | crud | COUNT: employees = 23
+2026-05-11 22:34:51 | INFO     | router | GET /employees/count — 23
+2026-05-11 22:34:59 | INFO     | router | GET /offices/count
+2026-05-11 22:34:59 | INFO     | crud | COUNT: Querying offices table.
+2026-05-11 22:34:59 | INFO     | crud | COUNT: offices = 7
+2026-05-11 22:34:59 | INFO     | router | GET /offices/count — 7
+2026-05-11 22:35:06 | INFO     | router | GET /payments/count
+2026-05-11 22:35:06 | INFO     | crud | COUNT: Querying payments table.
+2026-05-11 22:35:06 | INFO     | crud | COUNT: payments = 273
+2026-05-11 22:35:06 | INFO     | router | GET /payments/count — 273
+2026-05-11 22:35:11 | INFO     | router | GET /orderdetails/count
+2026-05-11 22:35:11 | INFO     | crud | COUNT: Querying orderdetails table.
+2026-05-11 22:35:11 | INFO     | crud | COUNT: orderdetails = 2996
+2026-05-11 22:35:11 | INFO     | router | GET /orderdetails/count — 2996
+2026-05-11 22:35:18 | INFO     | router | GET /productlines/count
+2026-05-11 22:35:18 | INFO     | crud | COUNT: Querying productlines table.
+2026-05-11 22:35:18 | INFO     | crud | COUNT: productlines = 7
+2026-05-11 22:35:18 | INFO     | router | GET /productlines/count — 7
+2026-05-11 22:35:23 | INFO     | router | GET /overall_counts — starting all 8 concurrent queries
+2026-05-11 22:35:23 | INFO     | router | Launching asyncio.gather() for 8 concurrent DB queries...
+2026-05-11 22:35:23 | INFO     | crud | COUNT: Querying customers table.
+2026-05-11 22:35:23 | INFO     | crud | COUNT: Querying orders table.
+2026-05-11 22:35:23 | INFO     | crud | 📊 COUNT: Querying employees table.
+2026-05-11 22:35:23 | INFO     | crud | 📊 COUNT: Querying products table.
+2026-05-11 22:35:23 | INFO     | crud | COUNT: Querying offices table.
+2026-05-11 22:35:23 | INFO     | crud | COUNT: customers = 122
+2026-05-11 22:35:23 | INFO     | crud | COUNT: Querying payments table.
+2026-05-11 22:35:23 | INFO     | crud | COUNT: Querying orderdetails table.
+2026-05-11 22:35:23 | INFO     | crud | COUNT: Querying productlines table.
+2026-05-11 22:35:23 | INFO     | crud | COUNT: payments = 273
+2026-05-11 22:35:23 | INFO     | crud | COUNT: orderdetails = 2996
+2026-05-11 22:35:23 | INFO     | crud | COUNT: employees = 23
+2026-05-11 22:35:23 | INFO     | crud | COUNT: orders = 326
+2026-05-11 22:35:23 | INFO     | crud | COUNT: offices = 7
+2026-05-11 22:35:23 | INFO     | crud | COUNT: productlines = 7
+2026-05-11 22:35:23 | INFO     | crud | COUNT: products = 110
+2026-05-11 22:35:23 | INFO     | router | asyncio.gather() completed in 40.42 ms
+2026-05-11 22:35:23 | INFO     | router | GET /overall_counts — success: {'customers': 122, 'orders': 326, 'products': 110, 'employees': 23, 'offices': 7, 'payments': 273, 'orderdetails': 2996, 'productlines': 7, 'response_time_ms': 40.42}
